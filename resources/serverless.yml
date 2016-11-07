@@ -45,25 +45,7 @@ resources:
       DeletionPolicy: "Retain"
       Properties:
         BucketName: www.${file(../config.yml):staticBucketName}
-        AccessControl: "PublicRead"
+        AccessControl: "Private"
         WebsiteConfiguration:
           RedirectAllRequestsTo: 
             HostName: ${file(../config.yml):staticBucketName}
-
-    RedirectStaticBucketPolicy:
-      Type: "AWS::S3::BucketPolicy"
-      Properties:
-        Bucket: 
-          Ref: "RedirectStaticBucket"
-        PolicyDocument:
-          Statement:
-          - Sid: AddPerm
-            Effect: Allow
-            Principal: "*"
-            Action: s3:GetObject
-            Resource:
-              Fn::Join:
-              - ''
-              - - 'arn:aws:s3:::'
-                - www.${file(../config.yml):staticBucketName}
-                - "/*"

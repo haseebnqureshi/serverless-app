@@ -2,6 +2,9 @@
 # serverless-app
 Serverless framework example for launching a basic front-end app.
 
+## Explanation
+This creates 2 additional S3 buckets, both configured for static website hosting through S3. One will actually contain your files, and the other handles your www. prefix requests, routing them to the non-www bucket. 
+
 ## Quick Start
 
 1. Go to ```config.yml``` in the repo's root directory. Change whatever you need to change there. These settings are then used by each service below for full consistency.
