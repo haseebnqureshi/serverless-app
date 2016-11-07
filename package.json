@@ -1,0 +1,22 @@
+{
+  "name": "hq-starter-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "bash scripts/install.sh",
+    "deploy": "bash scripts/deploy.sh",
+    "remove": "bash scripts/remove.sh",
+    "info": "bash scripts/info.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haseebnqureshi/serverless-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haseebnqureshi/serverless-app/issues"
+  },
+  "homepage": "https://github.com/haseebnqureshi/serverless-app#readme"
+}

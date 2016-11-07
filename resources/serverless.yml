@@ -1,0 +1,27 @@
+frameworkVersion: "1.1.0"
+
+service: ${file(../config.yml):appPrefix}-resources
+
+provider:
+  name: aws
+  runtime: ${file(../config.yml):awsRuntime}
+  stage: ${file(../config.yml):awsStage}
+  region: ${file(../config.yml):awsRegion}
+  profile: ${file(../config.yml):awsProfile}
+
+# resources:
+#   Resources:
+#     UserDynamoDBTable:
+#       Type: 'AWS::DynamoDB::Table'
+#       DeletionPolicy: Retain
+#       Properties:
+#         TableName: '${file(../config.yml):appPrefix}-items'
+#         AttributeDefinitions:
+#           - AttributeName: id
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: id
+#             KeyType: HASH
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 1
+#           WriteCapacityUnits: 1

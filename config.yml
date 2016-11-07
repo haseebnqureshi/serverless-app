@@ -1,0 +1,6 @@
+
+appPrefix: hq-starter-app
+awsRuntime: nodejs4.3
+awsStage: dev
+awsRegion: us-east-1
+awsProfile: av_serverless_admin
