@@ -1,9 +1,22 @@
 #!/bin/bash
 
-# run this script to completely remove all services!
-for service in */ ; do
-	echo "Attempting to remove service located in \"$service\"..."
-	cd "$service"
-	sls remove
-	cd ..
-done
+function removeServices {
+
+	for service in */
+	do
+		cd "$service"
+		for serviceFile in *
+		do
+			if [[ "$serviceFile" == *"serverless.y"* ]]
+			then
+				echo "Found serverless service at $service - removing service..."
+				sls remove
+			fi
+		done	
+		cd ..
+	done
+}
+
+
+# recursively removes all services in your project!
+removeServices

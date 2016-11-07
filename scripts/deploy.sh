@@ -1,9 +1,22 @@
 #!/bin/bash
 
-# run this script to freshly deploy all services herein!
-for service in */ ; do
-	echo "Attempting to deploy service located in \"$service\"..."
-	cd "$service"
-	sls deploy
-	cd ..
-done
+function deployServices {
+
+	for service in */
+	do
+		cd "$service"
+		for serviceFile in *
+		do
+			if [[ "$serviceFile" == *"serverless.y"* ]]
+			then
+				echo "Found serverless service at $service - deploying service..."
+				sls deploy
+			fi
+		done	
+		cd ..
+	done
+}
+
+
+# recursively deploys all services in your project!
+deployServices
