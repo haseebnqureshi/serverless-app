@@ -20,6 +20,9 @@ Once you're ready to deploy your www directory for static website hosting, simpl
 
 2. Then run ```npm run-script sync```. You've just now uploaded the entire ```www``` directory onto S3 for static website hosting!
 
+## Removing
+When you remove your ```resources``` Serverless service, as a precaution, your S3 buckets WILL NOT be removed. You'll have to go into S3 and manually remove those static website buckets.
+
 ## Useful Commands
 To make full application ```deploy``` and ```remove``` simple, I've boiled them down to these two ```npm scripts``` that you can easily run:
 
