@@ -22,7 +22,7 @@ resources:
       Properties:
         BucketName: ${file(../config.yml):staticBucketName}
         AccessControl: "PublicRead"
-        WebsiteConiguration:
+        WebsiteConfiguration:
           IndexDocument: "index.html"
           ErrorDocument: "index.html"
 
