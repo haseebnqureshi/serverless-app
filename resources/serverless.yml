@@ -11,7 +11,7 @@ provider:
 
 resources:
   Resources:
-    
+
     StaticBucket:
       Type: "AWS::S3::Bucket"
       DeletionPolicy: "Retain"
@@ -38,4 +38,32 @@ resources:
               - ''
               - - 'arn:aws:s3:::'
                 - ${file(../config.yml):staticBucketName}
+                - "/*"
+
+    RedirectStaticBucket:
+      Type: "AWS::S3::Bucket"
+      DeletionPolicy: "Retain"
+      Properties:
+        BucketName: www.${file(../config.yml):staticBucketName}
+        AccessControl: "PublicRead"
+        WebsiteConfiguration:
+          RedirectAllRequestsTo: 
+            HostName: ${file(../config.yml):staticBucketName}
+
+    RedirectStaticBucketPolicy:
+      Type: "AWS::S3::BucketPolicy"
+      Properties:
+        Bucket: 
+          Ref: "RedirectStaticBucket"
+        PolicyDocument:
+          Statement:
+          - Sid: AddPerm
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource:
+              Fn::Join:
+              - ''
+              - - 'arn:aws:s3:::'
+                - www.${file(../config.yml):staticBucketName}
                 - "/*"
