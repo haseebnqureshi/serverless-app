@@ -20,7 +20,16 @@ module.exports.sync = (event, context, callback) => {
 
 	let sourceDirpath = path.resolve( __dirname, '../www' );
 	let yamlFilepath = path.resolve( __dirname, '../config.yml' );
-	let config = yaml.safeLoad( fs.readFileSync(yamlFilepath, 'utf8') );
+	let config;
+
+	//safely try and load yml, otherwise we error out
+	try {
+		config = yaml.safeLoad( fs.readFileSync(yamlFilepath, 'utf8') );
+	}
+	catch (err) {
+		throw 'Looks like you\'re running this in lambda. Invoke your function locally and it\'ll be all fine!';
+	}
+
 	let command = `aws s3 sync ${sourceDirpath} s3://${config.staticBucketName} --profile=${config.awsProfile}`;
 
 	console.warn('About to sync local www directory to S3...');

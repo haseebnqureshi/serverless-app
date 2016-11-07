@@ -8,7 +8,7 @@
     "deploy": "bash scripts/deploy.sh",
     "remove": "bash scripts/remove.sh",
     "info": "bash scripts/info.sh",
-    "sync": "cd resources && sls invoke local -f sync && cd .."
+    "sync": "bash scripts/sync.sh"
   },
   "repository": {
     "type": "git",
