@@ -9,6 +9,10 @@ provider:
   region: ${file(../config.yml):awsRegion}
   profile: ${file(../config.yml):awsProfile}
 
+functions:
+  sync:
+    handler: handler.sync
+
 resources:
   Resources:
 
@@ -18,7 +22,7 @@ resources:
       Properties:
         BucketName: ${file(../config.yml):staticBucketName}
         AccessControl: "PublicRead"
-        WebsiteConfiguration:
+        WebsiteConiguration:
           IndexDocument: "index.html"
           ErrorDocument: "index.html"
 
